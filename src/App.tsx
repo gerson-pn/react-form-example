@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Component } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component<{}, { nome: string }> {
+  constructor(props) {
+    super(props)
+    this.state = {
+      nome: ''
+    }
+    this.manipularEnvio = this.manipularEnvio.bind(this)
+    this.receberValorEntrada = this.receberValorEntrada.bind(this)
+  }
+
+  manipularEnvio(evento) {
+    evento.preventDefault()
+  }
+
+  receberValorEntrada(evento) {
+    let entrada = evento.target.value
+    this.setState({
+      nome: entrada
+    })    
+  }
+
+  render() {
+    return (
+      <div>
+        <form onSubmit={this.manipularEnvio}>
+          <label>
+            <span>Nome: </span>
+            <input type="text" name="name" value={this.state.nome} onChange={this.receberValorEntrada} />
+          </label><br />
+          <input type="submit" value="Enviar" />
+        </form>
+      </div>
+    )
+  }
 }
-
 export default App;
+
