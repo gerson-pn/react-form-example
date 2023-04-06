@@ -12,6 +12,7 @@ class App extends Component<{}, { nome: string }> {
 
   manipularEnvio(evento) {
     evento.preventDefault()
+    alert(`Você digitou: ${this.state.nome}`)
   }
 
   receberValorEntrada(evento) {
